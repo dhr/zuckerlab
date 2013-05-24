@@ -1,0 +1,34 @@
+doctype
+html
+  mixin title(subtitle)
+    title #{subtitle} | Zucker Computational Vision Group
+
+  head
+    meta(charset='utf8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge, chrome=1')
+    meta(name='description', content='description of your site')
+    meta(name='author', content= "author of the site")
+
+    block title
+  
+    link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Open+Sans:300')
+    link(rel='stylesheet', href='/css/reset.css')
+    link(rel='stylesheet', href='/css/fonts/stylesheet.css')
+    link(rel='stylesheet', href='/css/style.css')
+
+  body
+    #wrapper
+      nav#main-nav
+        ul
+          li#home: h1: a(href='/') Zucker<span class='lab'>lab</span>
+          li: a(href='/research.html') Research
+          li: a(href='/people.html') People
+          li: a(href='/publications.html') Publications
+          li: a(href='/bio.html') About Steve
+          li: a(href='/contact.html') Contact
+    
+      #content
+        block content
+
+  script(src="/socket.io/socket.io.js")
+  script(src="/js/reload-client.js")

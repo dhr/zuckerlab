@@ -1,0 +1,23 @@
+{
+  "name": "lab-website",
+  "version": "0.1.0",
+  "devDependencies": {
+    "grunt": "~0.4.0",
+    "grunt-contrib-coffee": "~0.4.1",
+    "grunt-contrib-jade": "~0.4.0",
+    "grunt-styl": "~0.0.0",
+    "grunt-contrib-copy": "~0.4.0",
+    "grunt-contrib-watch": "~0.3.0",
+    "grunt-contrib-livereload": "~0.1.2",
+    "styl": "0.0.1",
+    "rework": "~0.14.0"
+  },
+  "dependencies": {
+    "zappajs": "~0.4.15",
+    "nib": "~0.9.1"
+  },
+  "engines": {
+    "node": "~0.8.16",
+    "npm": "~1.1.65"
+  }
+}
