@@ -3,7 +3,7 @@
   var-main-color: #fff
 
   var-nav-width: 220px
-  var-total-width: 820px
+  var-total-width: 960px
 
   var-body-font-size: 16px
   var-rhythm: 12px
@@ -27,7 +27,8 @@ body
     left: 0px
     width: 50%
     z-index: -3
-    background-color: var(side-color)
+    background-color: #555
+    background-image: radial-gradient(farthest-side at center top, rgb(255, 255, 241) 0%, black 100%)
     content: ""
   
   &:after
@@ -39,7 +40,7 @@ body
     margin-left: calc(-(var(total-width)/2 - var(nav-width)))
     z-index: -1
     background-color: var(main-color)
-    box-shadow: 15px 0px 20px 10px rgba(black, 0.3)
+    box-shadow: 15px 0px 8px 15px rgba(black, 1)
     content: ""
   
   h1
@@ -48,12 +49,12 @@ body
     line-height: var(rhythm3)
   
   h2
-    font-size: calc(2*var(rhythm))
-    font-weight: 400
     margin-top: var(rhythm3)
-    line-height: var(rhythm2)
     position: relative
     top: -3px
+    font-size: calc(2*var(rhythm))
+    font-weight: 400
+    line-height: var(rhythm2)
   
   h1 + h2, h1 + dl > dt:first-child > h2
     margin-top: var(rhythm2)
@@ -79,14 +80,6 @@ nav
   float: left
   width: var(nav-width)
   z-index: -2
-    
-  &:before
-    position: absolute
-    left: 0px
-    top: 0px
-    width: calc((var(nav-width)/2))
-    height: 100%
-    content: ""
   
   ul
     padding: 0px
@@ -106,18 +99,18 @@ nav
         margin-left: 4px
       
       a
+        color: white
         padding: calc(var(rhythm)/4) calc(var(rhythm)/2)
         margin: calc(var(rhythm)/4) -calc(var(rhythm)/2)
         line-height: var(rhythm2)
         text-decoration: none
         text-shadow: 0px 0px 15px #0
-        
-        color: black
         border-radius: calc(var(rhythm)/4)
-        box-shadow: 0px 0px 4px rgba(black, 0)
+        box-shadow: 0px 1px 3px rgba(black, 0)
         transition: all 0.2s linear
         
         &:hover
+          color: black
           background-color: white
           box-shadow: 0px 1px 3px rgba(black, 0.3)
         
@@ -145,8 +138,8 @@ nav
   #steve
     width: 250px
     height: 188px
-    margin: calc(var(rhythm)/2) 0px calc(var(rhythm)/2) var(rhythm)
-    float: right
+    margin: calc(var(rhythm)/2) var(rhythm2) 0 0
+    float: left
     background-image: url(/img/steve-thumb.jpeg)
     border-radius: 6px
     box-shadow: inset 0px 0px 6px rgba(black, 0.4)
@@ -154,16 +147,66 @@ nav
   ul.peoples
     li
       display: inline-block
-      width: 180px
+      width: 220px
+
+.projects
+  padding: 0px 5px
+  margin-left: -5px
+  margin-right: -5px
+  
+  li
+    display: block
+    // float: left
+    // box-sizing: border-box
+    // width: 250px
+    // height: 400px
+    margin: calc(var(rhythm)*1.75) var(rhythm2) calc(var(rhythm)*0.75) 0px
+    // background-color: var(side-color)
+    // box-shadow: 0px 1px 5px rgba(black, 0.3)
+    
+    &:first-child
+      margin-top: calc(var(rhythm)*0.75)
+    
+    h3
+      padding: calc(var(rhythm)/4) 0 0 0
+      margin-bottom: -1px
+      background-color: rgba(#fff, 0.75)
+      border-bottom: dotted calc(- @margin-bottom) #555
+      font-weight: normal
+      font-style: italic
+    
+      &:first-child
+        margin-top: 0px
+    
+    .proj-desc
+      padding: calc(var(rhythm)/2) 0
+      
+      .demo-imgs
+        margin-top: calc(var(rhythm)/2)
+        margin-bottom: calc(var(rhythm)/2)
+        
+        img
+          display: inline-block
+          width: calc((var(total-width) - var(nav-width))/2 - 3.5*var(rhythm))
+          vertical-align: middle
+          transition: transform 0.2s linear
+          
+          &:hover
+            cursor: pointer;
+            transform: scale(1.05)
+        
+          &:not(:first-child)
+            margin-left: var(rhythm)
 
 #pub-sort-controls
+  display: none
   width: 110px
   height: 50px
   margin: 0 0 calc(var(rhythm)/2) var(rhythm)
   float: right
   border: solid 1px black
   border-radius: 5px
-
+  
 .publist
   li
     &:not(:first-child)
