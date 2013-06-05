@@ -1,5 +1,5 @@
 :root
-  var-side-color: #f7f7f7
+  var-side-color: #555
   var-main-color: #fff
 
   var-nav-width: 220px
@@ -27,7 +27,7 @@ body
     left: 0px
     width: 50%
     z-index: -3
-    background-color: #555
+    background-color: var(side-color)
     background-image: url(/img/shattered.png)
     content: ""
   
@@ -106,7 +106,6 @@ nav
         margin: calc(var(rhythm)/4) -calc(var(rhythm)/2)
         line-height: var(rhythm2)
         text-decoration: none
-        text-shadow: 0px 0px 15px #0
         border-radius: calc(var(rhythm)/4)
         box-shadow: 0px 1px 3px rgba(black, 0)
         transition: all 0.2s linear
