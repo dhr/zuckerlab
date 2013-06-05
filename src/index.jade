@@ -1,10 +1,84 @@
 extends _layout
 block title
   mixin title('Research')
-
-block content
-  h1 Computational Vision Group
   
+block content
+  h1 Research
   p Computational vision is at the heart of biomedicine and robotics, but is still quite primitive when compared with our own visual sense. We effortlessly demonstrate enormous flexibility and generality, which hides its staggering complexity: Nearly half of the primate brain processes visual information. Our group is attempting to put the requirements of vision systems together with insights from neurophysiology and the rigor of mathematics to develop an abstract theory of computational vision.  Based on differential geometry, it leads to methods of curve detection and shading and texture analysis.
   
   p My group is working on early vision, grouping, and generic shape analysis. Recent projects and research topics are demonstrated below. For a recent overview paper on computing in cortical columns, a topic at the heart of our research, please click <a href="/papers/Zucker01_columns.ps.gz">here</a>.
+  
+  h2 Projects
+  ul.projects
+    li
+      h3 Edge and Line Detection
+      .proj-desc
+        .demo-imgs
+          img(src="img/demo/curve-demo-original.gif")
+          img(src="img/demo/curve-demo-default.gif")
+        
+        p.details We propose a language for designing image measurement operators suitable for early vision. We refer to them as logical/linear (L/L) operators, since they unify aspects of linear operator theory and Boolean logic. A family of these operators appropriate for measuring low-order differential structure of image curves is developed. These L/L operators are derived by decomposing a linear model into logical components to ensure that certain structural preconditions for the existence of an image curve are upheld. Tangential conditions guarantee continuity, while normal conditions select and categorize contrast profiles. The resulting operators allow for coarse measurement of curvilinear differential structure (orientation and curvature) while successfully segregating edge- and line-like features. By thus reducing the incidence of false-positive responses, these operators are a substantial improvement over (thresholded) linear operators which attempt to resolve the same class of features.
+        
+    li
+      h3 Texture Analysis
+      .proj-desc
+        .demo-imgs
+          img(src="img/demo/texture-flow-demo-initial.gif")
+          img(src="img/demo/texture-flow-demo-relaxed.gif")
+        
+        p.details Locally parallel dense patterns &mdash; sometimes called texture flows &mdash; define a perceptually coherent structure which is important to image segmentation, edge classification, shading analysis, and shape interpretation. This paper develops the notion of texture flow from a geometrical point of view to argue that local measurements of such structures must incorporate two curvatures. We show how basic theoretical considerations lead to a unique model for the local behavior of the flow and allow for the specification of consistency constraints between nearby measurements. The computation of globally coherent structure via neighborhood relationships is demonstrated on synthetic and natural images, and is compared to orientation diffusion.
+      
+    li
+      h3 Shading Analysis
+      .proj-desc
+        .demo-imgs
+          img(src="img/demo/shading-demo-default.gif")
+          img(src="img/demo/shading-demo-fold.gif")
+        
+        p.details A natural sequel to edge detection is the interpretation of edges. This interpretation can provide useful information to various computer vision processes, including recognition, reconstruction, and tracking. In this paper we consider the problem of identifying occlusion edges in a single image. We examine the appearance of occlusion edges under variable illumination, both analytically and empirically, and find that the pattern of shading in the neighborhood of occlusion edges is a stable feature. Finally, we derive a filter for detecting occlusion and present the results of its application.
+    
+    li
+      h3 Stereo
+      .proj-desc
+        .demo-imgs
+          img(src="img/demo/stereo-demo-default.gif")
+          img(src="img/demo/stereo-demo-reconstruct.gif")
+        
+        p.details Standard approaches to the computation of stereo correspondence have difficulty when scene structure does not lie in or near the frontal-parallel plane, in part because an orientation disparity as well as a positional disparity is introduced. We propose a correspondence algorithm based on differential and projective geometry, and inspired by neurobiology, that takes explicit advantage of both disparities. Based on curves, the algorithm relates the (2D Frenet) differential structures (position, tangent, and curvature) in the left and right images with the Frenet geometry of the (3D) space curve. A compatibility function is defined via transport of the Frenet descriptors, and they are matched by relaxing this compatibility function on overlapping neighborhoods along the curve. False correspondences are concurrently eliminated by a model of "near" and "far" neurons derived from neurobiology. Examples of our algorithm and standard approaches are compared.
+      
+    li
+      h3 Color
+      .proj-desc
+        .demo-imgs
+          img(src="img/demo/color-demo-noisy.gif")
+          img(src="img/demo/color-demo-default.gif")
+        
+        p.details The denoising of color images is an increasingly studied problem whose state-of-the-art solutions employ a variety of diffusion schemes. Specifying the correct diffusion is difficult, however, in part because of the subtleties of color interactions. We address this difficulty by proposing a perceptual organization approach to color denoising based on the principle of good continuation. We exploit the periodic chromatic (hue) component of the color in its representation as a frame field. We derive two hue curvatures and use them to construct a local model for the behavior of the color, which in turn specifies consistency constraints between nearby color measurements. These constraints are then used to replace noisy pixels by examining their spatial context. Such a contextual analysis (combined with standard methods to handle the scalar channels, saturation and lightness), results in a robust noise removal process that preserves discontinuities, singularities, and fine chromatic structures, including those that diffusion processes are prone to distort. We demonstrate our approach on a variety of synthetic and natural images.
+    
+    li
+      h3 Computational Neuroscience
+      .proj-desc
+        .demo-imgs
+          img(src="img/demo/connections-demo-default.gif")
+          img(src="img/demo/connections-demo-predicted.gif")
+        
+        p.details Neurons in primary visual cortex respond selectively to oriented stimuli such as edges and lines. The long-range horizontal connections between them are thought to facilitate contour integration. While many physiological and psychophysical findings suggest that colinear or association-field models of good continuation dictate particular projection patterns of horizontal connections to guide this integration process, significant evidence of interactions inconsistent with these hypotheses is accumulating. We first show that natural random variations around the colinear and association-field models cannot account for these inconsistencies, a fact that motivates the search for more principled explanations. We then develop a model of long-range projection fields that formalizes good continuation based on differential geometry. The analysis implicates curvature(s) in a fundamental way and the resulting model explains both consistent data and apparent outliers. It quantitatively predicts the (typically ignored) spread in projection distribution, its non-monotonic variance, and the differences found between individual neurons. Surprisingly, and for the first time, this model also indicates that texture (and shading) continuation can serve as alternative and complimentary functional explanations to contour integration. Because current anatomical data support both (curve and texture) integration models equally, and because both are important computationally, new testable predictions are derived to allow their differentiation and identification.
+      
+    li
+      h3 Psychophysics
+      .proj-desc
+        .demo-imgs
+          img(src="img/demo/psych-demo-1.gif")
+          img(src="img/demo/psych-demo-2.gif")
+        
+        p.details We earlier introduced an approach to categorical shape description based on the singularities (shocks) of curve evolution equations. We now consider the simplest compositions of shocks, and show that they lead to three classes of parametrically ordered shape sequences, organized along the sides of a shape triangle. By conducting several psychophysical experiments we demonstrate that shock-based descriptions are predictive of performance in shape perception. Most significantly, the experiments reveal a fundamental difference between perceptual effects dominated by when shocks form with respect to one another, versus those dominated by where they form. The shock-based theory provides a foundation for unifying tasks as diverse as shape bisection, recognition, and categorization.
+    
+    li
+      h3 Shock Graphs and Shape Matching
+      .proj-desc
+        .demo-imgs
+          img(src="img/demo/sgsm-demo-shocks.gif")
+          img(src="img/demo/sgsm-demo-graph.gif")
+        
+        p.details We have been developing a theory for the generic representation of 2-D shape, where structural descriptions are derived from the shocks (singularities) of a curve evolution process, acting on bounding contours. We now apply the theory to the problem of shape matching. The shocks are organized into a directed, acyclic shock graph, and complexity is managed by attending to the most significant (central) shape components first. The space of all such graphs is highly structured and can be characterized by the rules of a shock graph grammar. The grammar permits a reduction of a shock graph to a unique rooted shock tree. We introduce a novel tree matching algorithm which finds the best set of corresponding nodes between two shock trees in polynomial time. Using a diverse database of shapes, we demonstrate our system's performance under articulation, occlusion, and changes in viewpoint.
+  
