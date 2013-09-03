@@ -2,7 +2,7 @@
   var-side-color: #474747
   var-main-color: #fff
 
-  var-nav-width: 220px
+  var-nav-width: 210px
   var-total-width: 960px
 
   var-body-font-size: 16px
@@ -12,39 +12,19 @@
   var-rhythm4: calc(4*var(rhythm))
 
 body
-  position: absolute
   min-width: 100%
   min-height: 100%
-  background-color: white
-  font-family: 'Open Sans'
+  font-family: 'Rosario'
   font-size: var(body-font-size)
-  font-weight: 200
-
-  &:before
-    position: absolute
-    top: 0px
-    bottom: 0px
-    left: 0px
-    width: 50%
-    z-index: -3
-    background-color: var(side-color)
-    background-image: url(/img/shattered.png)
-    content: ""
+  background-color: #fbfbfb
+  background-image: linear-gradient(top, white, rgba(255, 255, 255, 0) 30px)
+  background-repeat: no-repeat
+  padding-left: 5px
   
-  &:after
-    position: absolute
-    top: 0px
-    bottom: 0px
-    left: 50%
-    right: 0px
-    margin-left: calc(-(var(total-width)/2 - var(nav-width)))
-    z-index: -1
-    background-color: var(main-color)
-    background-image:
-      linear-gradient(top, white, rgba(white, 0) 30px),
-      url(/img/cream-dust.png)
-    box-shadow: 15px 0px 50px 15px rgba(black, 0.5)
-    content: ""
+  h1, h2
+    color: #0f4d92
+    font-family: 'Open Sans'
+    font-weight: 200
   
   h1
     font-size: var(rhythm3)
@@ -77,7 +57,7 @@ body
   position: relative
   box-sizing: border-box
   width: var(total-width)
-  margin: 0px auto
+  margin: 0
 
 nav
   float: left
@@ -91,37 +71,53 @@ nav
     li
       display: block
       box-sizing: border-box
-      margin: var(rhythm) var(rhythm2)
+      margin: var(rhythm) var(rhythm)
       text-align: right
-      color: #eee
-      text-shadow: 0px 2px 15px black
+      color: #ccc
+      font-size: 18px
       
       &:first-child
         margin-top: 0px
       
-      .lab
-        color: #ccc
-        margin-left: 4px
+        .lab
+          color: #ccc
+          margin-left: 4px
+        
+      &:first-child + li
+        margin-top: -1px
       
       a
         color: inherit
-        padding: calc(var(rhythm)/4) calc(var(rhythm)/2)
-        margin: calc(var(rhythm)/4) -calc(var(rhythm)/2)
+        padding: 0
+        margin: calc(var(rhythm)/2) 0
         line-height: var(rhythm2)
         text-decoration: none
-        border-radius: calc(var(rhythm)/4)
         box-shadow: 0px 1px 3px rgba(black, 0)
-        transition: all 0.2s linear
+        position: relative
+        
+        &:before
+          content: ""
+          position: absolute
+          width: 9px
+          height: 9px
+          left: -30px
+          top: 6px
+          opacity: 0
+          transform: scaleX(0.5) rotate(45deg)
+          border: solid 4px #0f4d92
+          border-bottom: none
+          border-left: none
+          border-radius: 3px
+          transition: all 0.1s ease-out
         
         &:hover
           color: black
-          background-color: white
-          box-shadow: 0px 2px 10px rgba(black, 0.5)
-          text-shadow: none
-        
-        &:active
-          transition: none
-          box-shadow: inset 0px 1px 3px rgba(black, 0.7)
+          
+        &:hover:before
+          opacity: 1
+          left: -16px
+          border-width: 2px
+          transform: rotate(45deg)
 
 #content
   overflow: auto
@@ -143,8 +139,8 @@ nav
   #steve
     width: 250px
     height: 188px
-    margin: calc(var(rhythm)/2) var(rhythm2) 0 0
-    float: left
+    margin: calc(var(rhythm)/2) var(rhythm2) 0 var(rhythm2)
+    float: right
     background-image: url(/img/steve-thumb.jpeg)
     border-radius: 6px
     box-shadow: inset 0px 0px 6px rgba(black, 0.4)
@@ -174,8 +170,6 @@ nav
     
     h3
       padding: calc(var(rhythm)/4) 0 0 0
-      margin-bottom: -1px
-      border-bottom: dotted calc(- @margin-bottom) #555
       font-weight: normal
       font-style: italic
     
@@ -183,22 +177,20 @@ nav
         margin-top: 0px
     
     .proj-desc
-      padding: calc(var(rhythm)/2) 0
+      padding: 0
       
       .demo-imgs
-        margin-top: calc(var(rhythm)/2)
-        margin-bottom: calc(var(rhythm)/2)
+        margin-top: calc(var(rhythm)/2 - 2px)
+        margin-bottom: calc(var(rhythm)/2 + 2px)
         
         img
           display: inline-block
           width: calc((var(total-width) - var(nav-width))/2 - 3.5*var(rhythm))
+          box-sizing: border-box
           vertical-align: middle
-          transition: transform 0.2s linear
+          border: solid 1px #ccc
+          box-shadow: 4px 4px 1px rgba(0, 0, 0, 0.1)
           
-          &:hover
-            cursor: pointer;
-            transform: scale(1.05)
-        
           &:not(:first-child)
             margin-left: var(rhythm)
 
