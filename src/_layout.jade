@@ -14,7 +14,6 @@ html
     link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Open+Sans:300')
     link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Rosario:400,400italic,700')
     link(rel='stylesheet', href='/css/reset.css')
-    link(rel='stylesheet', href='/css/fonts/fontello.css')
     link(rel='stylesheet', href='/css/style.css')
 
   body
@@ -30,6 +29,14 @@ html
     
       #content
         block content
-
+        
+  script(src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js')
+  script
+    window.jQuery ||
+    document.write('<script src="/js/vendor/jquery-1.9.1.min.js"><\\/script>')
+  script(src='/js/vendor/jquery-migrate-1.1.1.min.js')
+  script(src="/js/vendor/jquery.scrollto.min.js")
+  script(src="/js/vendor/jquery.history.js")
+  script(src="/js/vendor/ajaxify-html5.js")
   script(src="/socket.io/socket.io.js")
   script(src="/js/reload-client.js")

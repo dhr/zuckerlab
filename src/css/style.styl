@@ -2,7 +2,7 @@
   var-side-color: #474747
   var-main-color: #fff
 
-  var-nav-width: 210px
+  var-nav-width: 190px
   var-total-width: 960px
 
   var-body-font-size: 16px
@@ -12,14 +12,12 @@
   var-rhythm4: calc(4*var(rhythm))
 
 body
-  min-width: 100%
   min-height: 100%
   font-family: 'Rosario'
   font-size: var(body-font-size)
   background-color: #fbfbfb
   background-image: linear-gradient(top, white, rgba(255, 255, 255, 0) 30px)
   background-repeat: no-repeat
-  padding-left: 5px
   
   h1, h2
     color: #0f4d92
@@ -33,13 +31,14 @@ body
   
   h2
     margin-top: var(rhythm3)
+    margin-bottom: var(rhythm)
     position: relative
     top: -3px
     font-size: calc(2*var(rhythm))
     font-weight: 400
     line-height: var(rhythm2)
   
-  h1 + h2, h1 + dl > dt:first-child > h2
+  h1 + *
     margin-top: var(rhythm2)
   
   h3
@@ -50,19 +49,19 @@ body
     position: relative
     top: -1px
   
-  h2 + h3
+  h2 + *
     margin-top: var(rhythm)
 
 #wrapper
-  position: relative
   box-sizing: border-box
   width: var(total-width)
-  margin: 0
+  padding: var(rhythm3) var(rhythm3)
 
 nav
   float: left
   width: var(nav-width)
   z-index: -2
+  margin-right: var(rhythm2)
   
   ul
     padding: 0px
@@ -73,14 +72,14 @@ nav
       box-sizing: border-box
       margin: var(rhythm) var(rhythm)
       text-align: right
-      color: #ccc
+      color: #bbb
       font-size: 18px
       
       &:first-child
         margin-top: 0px
       
         .lab
-          color: #ccc
+          color: #bbb
           margin-left: 4px
         
       &:first-child + li
@@ -120,9 +119,7 @@ nav
           transform: rotate(45deg)
 
 #content
-  overflow: auto
-  margin-top: var(rhythm3)
-  padding: 0px var(rhythm2) var(rhythm2) var(rhythm2)
+  overflow: hidden
   line-height: var(rhythm2)
   
   p + p
@@ -185,7 +182,7 @@ nav
         
         img
           display: inline-block
-          width: calc((var(total-width) - var(nav-width))/2 - 3.5*var(rhythm))
+          width: calc((var(total-width) - var(nav-width))/2 - 6*var(rhythm))
           box-sizing: border-box
           vertical-align: middle
           border: solid 1px #ccc
@@ -205,6 +202,18 @@ nav
   
 .publist
   li
+    &:before
+      content: ""
+      display: inline-block
+      width: 3px
+      height: 3px
+      border-radius: 3px
+      margin-right: 6px
+      background-color: black
+      vertical-align: middle
+      position: relative
+      top: -1px
+    
     &:not(:first-child)
       margin-top: var(rhythm)
   
@@ -213,6 +222,8 @@ nav
       content: ', '
     &:last-child:before
       content: ', and '
+    &:first-child:last-child:before
+      content: ''
   
   .title
     &:before

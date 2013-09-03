@@ -5,19 +5,25 @@ import sys
 from pybtex.database.input import bibtex
 
 parser = bibtex.Parser()
-bibdata = parser.parse_file("src/pubs/zucker.bib")
+bibdata = parser.parse_file("src/pubs/book.bib")
 
 def prindent(n, *s):
   for i in xrange(0, n):
     sys.stdout.write('  ')
   print(*s)
 
+get_year = lambda entry: entry.fields['year']
+sorted_entries = sorted(
+  bibdata.entries.values(),
+  key=get_year,
+  reverse=True)
+
 prindent(0, 'ul.publist')
-for bib_id in bibdata.entries:
+for entry in sorted_entries:
   prindent(1, 'li')
-  b = bibdata.entries[bib_id].fields
+  b = entry.fields
   prindent(2, 'span.authors')
-  for author in bibdata.entries[bib_id].persons['author']:
+  for author in entry.persons['author']:
     s = ''
     if author.last():
       s += author.last()[0]
