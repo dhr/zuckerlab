@@ -1,0 +1,17 @@
+extends _project
+
+block params
+  - var project_name = 'Color/Shading Interactions'
+
+block project_description
+  p.details Our visual systems must decouple those shading variations due to geometric and lighting changes from surface material variations to infer surfaces. It is normally assumed that geometry and material changes are concurrently estimated, and others have implicated color/luminance interactions (the "color-shading effect"). In general, e.g. when viewing an apple, there are pigmentation changes and shading variations, but they develop by different physical processes. Hence they are, technically, independent. We show that when shading and color are made to flow dependently across an image, apparent depth disappears even for stimuli eliciting otherwise powerful shape percepts.
+
+  p Stimuli were rendered as a set of smooth, Lambertian surfaces, resulting in images with clear three-dimensional structure. By applying an equiluminant colormap to these images and then multiplying pointwise by the original intensity image, we obtain a final stimulus that contains the same luminance information as the original Lambertian renderings, but in which the orientation flows of color and intensity changes are identical. The shading percept in these stimuli is largely destroyed, but remains intact for images in which the colormap is applied to a grayscale image other than the original (e.g., another shape).
+
+  p We confirmed this effect psychophysically using a depth comparison task. Stimuli were constructed so that color flows were either: (i) dependent on the shading flows ("consistent"); (ii) independent of the shading ("inconsistent"); or (iii) the stimulus was simply the original rendering (control condition). Method: Two dots marked locations on each stimulus, and subjects reported which location appeared closer. Result: Subjects were significantly less accurate in the consistent condition than in either the inconsistent or control conditions, even without controlling for boundary foreshortening effects.
+
+  p Conclusion: When intensity variations are made to be geometrically consistent with hue variations, shape relief is impaired.
+
+  .demo-imgs
+    img(src="/img/demo/color-shading-corr.png")
+    img(src="/img/demo/color-shading-uncorr.png")

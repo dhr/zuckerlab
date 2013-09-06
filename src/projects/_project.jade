@@ -1,0 +1,12 @@
+extends ../_layout
+
+block title
+  block params
+  +title('Research > ' + project_name)
+
+block content
+  block params
+  h1 Research
+    span.subtitle #{project_name}
+  
+  block project_description

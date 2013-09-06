@@ -1,0 +1,11 @@
+extends _project
+
+block params
+  - var project_name = 'Shading Analysis'
+
+block project_description
+  p.details A natural sequel to edge detection is the interpretation of edges. This interpretation can provide useful information to various computer vision processes, including recognition, reconstruction, and tracking. In this paper we consider the problem of identifying occlusion edges in a single image. We examine the appearance of occlusion edges under variable illumination, both analytically and empirically, and find that the pattern of shading in the neighborhood of occlusion edges is a stable feature. Finally, we derive a filter for detecting occlusion and present the results of its application.
+
+  .demo-imgs
+    img(src="/img/demo/shading-demo-default.gif")
+    img(src="/img/demo/shading-demo-fold.gif")

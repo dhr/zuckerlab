@@ -1,0 +1,11 @@
+extends _project
+
+block params
+  - var project_name = 'Color Denoising'
+
+block project_description
+  p.details The denoising of color images is an increasingly studied problem whose state-of-the-art solutions employ a variety of diffusion schemes. Specifying the correct diffusion is difficult, however, in part because of the subtleties of color interactions. We address this difficulty by proposing a perceptual organization approach to color denoising based on the principle of good continuation. We exploit the periodic chromatic (hue) component of the color in its representation as a frame field. We derive two hue curvatures and use them to construct a local model for the behavior of the color, which in turn specifies consistency constraints between nearby color measurements. These constraints are then used to replace noisy pixels by examining their spatial context. Such a contextual analysis (combined with standard methods to handle the scalar channels, saturation and lightness), results in a robust noise removal process that preserves discontinuities, singularities, and fine chromatic structures, including those that diffusion processes are prone to distort. We demonstrate our approach on a variety of synthetic and natural images.
+
+  .demo-imgs
+    img(src="/img/demo/color-demo-noisy.gif")
+    img(src="/img/demo/color-demo-default.gif")

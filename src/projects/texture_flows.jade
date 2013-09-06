@@ -1,0 +1,11 @@
+extends _project
+
+block params
+  - var project_name = 'Texture Analysis'
+
+block project_description
+  p.details Locally parallel dense patterns &mdash; sometimes called texture flows &mdash; define a perceptually coherent structure which is important to image segmentation, edge classification, shading analysis, and shape interpretation. This paper develops the notion of texture flow from a geometrical point of view to argue that local measurements of such structures must incorporate two curvatures. We show how basic theoretical considerations lead to a unique model for the local behavior of the flow and allow for the specification of consistency constraints between nearby measurements. The computation of globally coherent structure via neighborhood relationships is demonstrated on synthetic and natural images, and is compared to orientation diffusion.
+
+  .demo-imgs
+    img(src="/img/demo/texture-flow-demo-initial.gif")
+    img(src="/img/demo/texture-flow-demo-relaxed.gif")

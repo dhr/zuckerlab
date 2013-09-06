@@ -1,0 +1,11 @@
+extends _project
+
+block params
+  - var project_name = 'Stereo'
+
+block project_description
+  p.details Standard approaches to the computation of stereo correspondence have difficulty when scene structure does not lie in or near the frontal-parallel plane, in part because an orientation disparity as well as a positional disparity is introduced. We propose a correspondence algorithm based on differential and projective geometry, and inspired by neurobiology, that takes explicit advantage of both disparities. Based on curves, the algorithm relates the (2D Frenet) differential structures (position, tangent, and curvature) in the left and right images with the Frenet geometry of the (3D) space curve. A compatibility function is defined via transport of the Frenet descriptors, and they are matched by relaxing this compatibility function on overlapping neighborhoods along the curve. False correspondences are concurrently eliminated by a model of "near" and "far" neurons derived from neurobiology. Examples of our algorithm and standard approaches are compared.
+
+  .demo-imgs
+    img(src="/img/demo/stereo-demo-default.gif")
+    img(src="/img/demo/stereo-demo-reconstruct.gif")

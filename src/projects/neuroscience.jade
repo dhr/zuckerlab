@@ -1,0 +1,11 @@
+extends _project
+
+block params
+  - var project_name = 'Computational Neuroscience'
+
+block project_description
+  p.details Neurons in primary visual cortex respond selectively to oriented stimuli such as edges and lines. The long-range horizontal connections between them are thought to facilitate contour integration. While many physiological and psychophysical findings suggest that colinear or association-field models of good continuation dictate particular projection patterns of horizontal connections to guide this integration process, significant evidence of interactions inconsistent with these hypotheses is accumulating. We first show that natural random variations around the colinear and association-field models cannot account for these inconsistencies, a fact that motivates the search for more principled explanations. We then develop a model of long-range projection fields that formalizes good continuation based on differential geometry. The analysis implicates curvature(s) in a fundamental way and the resulting model explains both consistent data and apparent outliers. It quantitatively predicts the (typically ignored) spread in projection distribution, its non-monotonic variance, and the differences found between individual neurons. Surprisingly, and for the first time, this model also indicates that texture (and shading) continuation can serve as alternative and complimentary functional explanations to contour integration. Because current anatomical data support both (curve and texture) integration models equally, and because both are important computationally, new testable predictions are derived to allow their differentiation and identification.
+
+  .demo-imgs
+    img(src="/img/demo/connections-demo-default.gif")
+    img(src="/img/demo/connections-demo-predicted.gif")
