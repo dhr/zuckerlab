@@ -164,7 +164,7 @@ nav
 
 #project-thumbnails
   width: calc(var(total-width) - 2*var(rhythm3))
-  margin: var(rhythm2) 0 var(rhythm) calc(-var(nav-width) - var(rhythm))
+  margin: var(rhythm2) 0 calc(var(rhythm)/2) calc(-var(nav-width) - var(rhythm))
   position: relative
   
   .project-link
@@ -178,8 +178,13 @@ nav
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2)
     margin: 4px
     border: solid 1px #ccc
-    transition: all 0.4s cubic-bezier(0, 1, 0.5, 1)
+    transition-duration: 0.4s
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1)
+    transition-property:
+      box-shadow, transform, -moz-transform, -webkit-transform, -ms-transform,
+      -o-transform
     border-radius: 0px
+    z-index: 20
     
     &:before
       content: ''
@@ -196,7 +201,7 @@ nav
     &:hover
       box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2)
       transform: scale(1.05)
-      z-index: 3
+      z-index: 21
     
     .description
       background-color: rgba(255, 255, 255, 0.9)
