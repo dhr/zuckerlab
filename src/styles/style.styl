@@ -1,0 +1,388 @@
+:root
+  --side-color: #474747
+  --main-color: #fff
+
+  --nav-width: 190px
+  --total-width: 960px
+
+  --body-font-size: 16px
+  --rhythm: 12px
+  --rhythm2: calc(2*var(--rhythm))
+  --rhythm3: calc(3*var(--rhythm))
+  --rhythm4: calc(4*var(--rhythm))
+
+  --transform: transform, -moz-transform, -webkit-transform, -ms-transform,
+    -o-transform
+
+body
+  min-height: 100%
+  font-family: 'Rosario'
+  font-size: var(--body-font-size)
+  background-color: #fbfbfb
+  background-image: linear-gradient(top, white, rgba(255, 255, 255, 0) 30px)
+  background-repeat: no-repeat
+
+  h1, h2
+    color: #0f4d92
+    font-family: 'Open Sans'
+    font-weight: 200
+
+  h1
+    font-size: var(--rhythm3)
+    margin-bottom: var(--rhythm2)
+    margin-left: -2px
+    line-height: var(--rhythm3)
+    height: @line-height
+
+  h2
+    margin-top: var(--rhythm3)
+    margin-bottom: var(--rhythm)
+    position: relative
+    top: -3px
+    font-size: calc(2*var(--rhythm))
+    font-weight: 400
+    line-height: var(--rhythm2)
+    height: @line-height
+
+  h1 + *
+    margin-top: var(--rhythm2)
+
+  h3
+    font-size: calc(1.5*var(--rhythm))
+    font-weight: 600
+    margin-top: var(--rhythm)
+    line-height: var(--rhythm2)
+    position: relative
+    top: -1px
+
+  h2 + *
+    margin-top: var(--rhythm)
+
+  h1 .subtitle
+    font-size: 0.8em
+    line-height: var(--rhythm3)
+    margin-left: 30px
+    position: relative
+
+    &::before
+      content: ">"
+      position: absolute
+      left: -23px
+      top: 3px
+      width: 20px
+      height: 20px
+      transform: scaleX(0.5)
+
+#wrapper
+  box-sizing: border-box
+  width: var(--total-width)
+  margin: auto
+  padding: var(--rhythm3) var(--rhythm3)
+
+nav
+  position: absolute
+  width: var(--nav-width)
+  z-index: 2
+
+  ul
+    padding: 0px
+    list-style-type: none
+
+    li
+      display: block
+      box-sizing: border-box
+      margin: var(--rhythm) var(--rhythm)
+      text-align: right
+      color: #bbb
+      font-size: 18px
+
+      &:first-child
+        margin-top: 0px
+        margin-left: 2px
+
+        .lab
+          color: #bbb
+          margin-left: 4px
+
+      &:first-child + li
+        margin-top: -1px
+
+      h1 > a
+        text-decoration: none
+        color: inherit
+
+      & > a
+        color: inherit
+        padding: 0
+        margin: calc(var(--rhythm)/2) 0
+        line-height: var(--rhythm2)
+        text-decoration: none
+        box-shadow: 0px 1px 3px rgba(black, 0)
+        position: relative
+
+        &:hover
+          color: black
+
+        &::before
+          content: ""
+          visibility: hidden
+          position: absolute
+          width: 9px
+          height: 9px
+          left: -16px
+          top: 6px
+          opacity: 0
+          transform: translateX(-14px) scaleX(0.5) rotate(45deg)
+          border: solid 4px #0f4d92
+          border-bottom: none
+          border-left: none
+          border-radius: 3px
+          transition-duration: 0.3s
+          transition-timing-function: cubic-bezier(0, 1, 0.5, 1)
+          transition-property: visibility, opacity, var(--transform)
+          transition-delay: 0.3s, 0s
+          pointer-events: none
+
+      & > a:hover::before, &:first-child:hover + li > a::before
+        visibility: visible
+        opacity: 1
+        border-width: 2px
+        transform: translateX(0px) rotate(45deg)
+        transition-delay: 0s
+
+#sidecontent
+  margin-top: calc(var(--rhythm2) + var(--rhythm)/2)
+  width: 100%
+
+#content
+  padding-left: calc(var(--nav-width) + var(--rhythm2))
+  line-height: var(--rhythm2)
+
+  p + p
+    margin-top: var(--rhythm2)
+
+  a
+    text-decoration: none
+    font-weight: 400
+    color: #a00
+
+    &:hover
+      text-decoration: underline
+
+  #steve
+    width: 250px
+    height: 188px
+    margin: calc(var(--rhythm)/2) var(--rhythm2) 0 var(--rhythm2)
+    float: right
+    background-image: url(/img/steve-thumb.jpeg)
+    border-radius: 6px
+    box-shadow: inset 0px 0px 6px rgba(black, 0.4)
+
+  ul.peoples
+    li
+      display: inline-block
+      width: 220px
+
+#project-thumbnails
+  width: calc(var(--total-width) - 2*var(--rhythm3))
+  margin: calc(2.5*var(--rhythm)) 0 calc(var(--rhythm)/2) calc(-var(--nav-width) - var(--rhythm))
+  position: relative
+
+  .project-link
+    display: block
+    background-size: 120% auto
+    background-position: -5px -5px
+    box-sizing: border-box
+    width: 32%
+    height: 200px
+    position: relative
+    float: left
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2)
+    margin: 4px
+    border: solid 1px #ccc
+    transition-duration: 0.4s
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1)
+    transition-property: box-shadow, var(--transform)
+    border-radius: 0px
+    z-index: 20
+
+    &::before
+      content: ''
+      position: absolute
+      width: 100%
+      height: 100%
+      background-image:
+        linear-gradient(top, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.05))
+
+    &:active::before
+      background-image:
+        linear-gradient(bottom, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.05))
+
+    &:hover
+      box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2)
+      transform: scale(1.05) !important
+      z-index: 1000 !important
+
+    .description
+      background-color: rgba(255, 255, 255, 0.9)
+      position: absolute
+      left: 0
+      bottom: var(--rhythm)
+      border-top-right-radius: 4px
+      border-bottom-right-radius: 4px
+      border: solid 1px #ccc
+      border-left: none
+      color: black
+      padding: 2px 8px
+
+  &::after
+    display: block
+    content: '.'
+    visibility: hidden
+    height: 0px
+    clear: both
+
+.demo-imgs
+  margin-top: var(--rhythm2)
+  margin-bottom: var(--rhythm)
+
+  img
+    display: inline-block
+    width: calc((var(--total-width) - var(--nav-width))/2 - 6*var(--rhythm))
+    box-sizing: border-box
+    vertical-align: middle
+    border: solid 1px #ccc
+    box-shadow: 4px 4px 2px rgba(0, 0, 0, 0.0)
+
+    &:not(:first-child)
+      margin-left: var(--rhythm3)
+
+#pub-controls
+  margin: auto
+  width: calc(var(--nav-width) - var(--rhythm))
+  font-size: var(--body-font-size)
+
+  label
+    float: left
+    margin-left: 2px
+    line-height: var(--rhythm2)
+
+  input
+    float: left
+    clear: left
+
+    &[type='checkbox']
+      position: relative
+      top: 4px
+
+    &[type='text']
+      height: var(--rhythm3)
+      box-sizing: border-box
+      width: 100%
+      margin-top: 1px
+      margin-bottom: 6px
+      font-family: inherit
+      font-size: inherit
+      border: solid 2px #bbb
+      border-radius: 4px
+      padding: 0px 27px 0px 8px
+      transition: border-color 0.4s ease
+
+      &:focus
+        outline: none
+
+      &:hover, &:focus
+        border-color: #999
+
+      &::-ms-clear
+        width: 0px
+        height: 0px
+
+  .clearbtn
+    box-sizing: border-box
+    width: 16px
+    height: 16px
+    cursor: pointer
+    border: solid 2px #bbb
+    border-radius: 9px
+    transition: border-color 0.2s ease
+
+    &::before, &::after
+      position: absolute
+      content: ""
+      left: 5px
+      top: 1px
+      width: 2px
+      height: 10px
+      background-color: #bbb
+      transform: rotate(45deg)
+      transition: background-color 0.2s ease
+
+    &::after
+      transform: rotate(-45deg)
+
+    &:hover
+      border-color: #999
+
+      &::after, &::before
+        background-color: #999
+
+.publist
+  li
+    &::before
+      content: ""
+      display: inline-block
+      width: 3px
+      height: 3px
+      border-radius: 3px
+      margin-right: 6px
+      background-color: black
+      vertical-align: middle
+      position: relative
+      top: -1px
+
+    &:not(:first-child)
+      margin-top: var(--rhythm)
+
+  .author
+    &:not(:first-child)::before
+      content: ', '
+    &:last-child::before
+      content: ', and '
+    &:first-child:last-child::before
+      content: ''
+
+  .title
+    &::before
+      content: ', '
+
+  .journal, .booktitle
+    font-style: italic
+    &::before
+      font-style: normal
+      content: ', '
+
+  .volume
+    font-weight: bold
+    &::before
+      font-weight: normal
+      content: ', '
+
+  .issue
+    &::before
+      content: '('
+    &::after
+      content: ')'
+
+  :not(.issue) + .pages
+    display: none
+
+  .pages
+    &::before
+      content: ': '
+
+  .year
+    &::before
+      content: ', '
+    &::after
+      content: '.'

@@ -10,33 +10,32 @@ html
     meta(name='author', content= "author of the site")
 
     block title
-  
-    link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Open+Sans:300')
-    link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Rosario:400,400italic,700')
-    link(rel='stylesheet', href='/css/reset.css')
-    link(rel='stylesheet', href='/css/style.css')
+
+    link(rel='stylesheet', href='//fonts.googleapis.com/css?family=Open+Sans:300')
+    link(rel='stylesheet', href='//fonts.googleapis.com/css?family=Rosario:400,400italic,700')
+    // build:css /styles/style.css
+    link(rel='stylesheet', href='/styles/reset.css')
+    link(rel='stylesheet', href='/styles/style.css')
+    // endbuild
 
   body
     #wrapper
       nav#main-nav
         ul
-          li: h1 Zucker<span class='lab'>lab</span>
+          li: h1: a(href='/') Zucker<span class='lab'>lab</span>
           li: a(href='/') Research
           li: a(href='/people.html') People
           li: a(href='/publications.html') Publications
           li: a(href='/bio.html') About Steve
           li: a(href='/contact.html') Contact
-    
+
+        #sidecontent
+          block sidecontent
+
       #content
         block content
-        
-  script(src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js')
-  script
-    window.jQuery ||
-    document.write('<script src="/js/vendor/jquery-1.9.1.min.js"><\\/script>')
-  script(src='/js/vendor/jquery-migrate-1.1.1.min.js')
-  script(src="/js/vendor/jquery.scrollto.min.js")
-  script(src="/js/vendor/jquery.history.js")
-  script(src="/js/vendor/ajaxify-html5.js")
-  script(src="/socket.io/socket.io.js")
-  script(src="/js/reload-client.js")
+
+    script(src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js')
+    script(src="/scripts/vendor/jquery.transit.min.js")
+
+    block scripts

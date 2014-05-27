@@ -1,56 +1,267 @@
 module.exports = (grunt) ->
+  require("load-grunt-tasks") grunt
+  require("time-grunt") grunt
+
   grunt.initConfig
-    pkg: grunt.file.readJSON 'package.json'
-    
-    copy:
-      compile:
-        expand: true
-        cwd: 'src'
-        src: ['**', '!**/*.{coffee,jade,styl}', '!**/_*']
-        dest: 'public'
-    
-    coffee:
-      compile:
+    project:
+      src: 'src'
+      dist: 'public'
+
+    # Watches files for changes and runs tasks based on the changed files
+    watch:
+      coffee:
+        files: ["<%= project.src %>/scripts/{,*/}*.{coffee,litcoffee,coffee.md}"]
+        tasks: ["newer:coffee:dist"]
+
+      styl:
+        files: ["<%= project.src %>/styles/*.styl"]
+        tasks: ["newer:styl:compile"]
+
+      jade:
+        files: ['<%= project.src %>/{,*/}*.jade']
+        tasks: ['jade']
+
+
+      gruntfile:
+        files: ["Gruntfile.coffee"]
+        tasks: ['build']
+
+
+      livereload:
+        options:
+          livereload: "<%= connect.options.livereload %>"
+
         files: [
-          src: 'server.coffee'
-          dest: 'server.js'
-        ,
-          expand: true
-          cwd: 'src'
-          src: ['**/*.coffee']
-          dest: 'public'
-          ext: '.js'
+          "staging/{,*/}*.html"
+          "staging/styles/{,*/}*.css"
+          "staging/scripts/{,*/}*.js"
+          "<%= project.src %>/img/{,*/}*.{png,jpg,jpeg,gif,webp,svg}"
         ]
-    
+
+    # The actual grunt server settings
+    connect:
+      options:
+        port: 9000
+
+        # Change this to '0.0.0.0' to access the server from outside.
+        hostname: "0.0.0.0"
+        livereload: 35729
+
+      livereload:
+        options:
+          open: true
+          base: [
+            "staging"
+            "<%= project.src %>"
+          ]
+
+      dist:
+        options:
+          base: "<%= project.dist %>"
+
+    # Empties folders to start fresh
+    clean:
+      dist:
+        files: [
+          dot: true
+          src: [
+            "staging"
+            "<%= project.dist %>/*"
+            "!<%= project.dist %>/.git*"
+          ]
+        ]
+
+      server: "staging"
+
+    # Compiles .coffee files
+    coffee:
+      options:
+        sourceMap: true
+        sourceRoot: ""
+
+      dist:
+        files: [
+          expand: true
+          cwd: "<%= project.src %>"
+          src: "scripts/{,*/}*.coffee"
+          dest: "staging"
+          ext: ".js"
+        ]
+
+    # Compiles .jade files
     jade:
-      compile:
-        expand: true
-        cwd: 'src'
-        src: ['**/*.jade', '!**/_*']
-        dest: 'public'
-        ext: '.html'
-    
+      dist:
+        options:
+          pretty: true
+          data:
+            projects:
+              color_denoising: 'Color Denoising'
+              color_shading: 'Color/Shading Interaction'
+              edge_line: 'Edge/Line Detection'
+              neuroscience: 'Computational Neuroscience'
+              psychophysics: 'Psychophysics'
+              shading_occlusion: 'Shading-Based Occlusion Analysis'
+              texture_flows: 'Texture Flows'
+              shock_graphs: 'Shock Graphs & Shape Matching'
+              stereo: 'Stereo'
+
+        files: [
+          expand: true
+          cwd: '<%= project.src %>'
+          dest: 'staging'
+          src: ['{,*/}*.jade', '!{,*/}_*']
+          ext: '.html'
+        ]
+
+    # Compiles .styl files
     styl:
       options:
         whitespace: true
+        configure: (styl) ->
+          styl.use require('rework-vars')()
+          styl.use require('rework-calc')
+
       compile:
         expand: true
-        cwd: 'src'
-        src: ['**/*.styl', '!**/_*']
-        dest: 'public'
+        cwd: '<%= project.src %>'
+        src: ['styles/*.styl', '!styles/_*']
+        dest: 'staging'
         ext: '.css'
-    
-    watch:
+
+    # Renames files for browser caching purposes
+    filerev:
+      dist:
+        files: [
+          src: [
+            "<%= project.dist %>/scripts/{,*/}*.js"
+            "<%= project.dist %>/styles/{,*/}*.css"
+            "<%= project.dist %>/img/{,*/}*.{png,jpg,jpeg,gif,webp,svg}"
+            "<%= project.dist %>/styles/fonts/*"
+          ]
+        ]
+
+    # Reads HTML for usemin blocks to enable smart builds that automatically
+    # concat, minify and revision files. Creates configurations in memory so
+    # additional tasks can operate on them
+    useminPrepare:
+      html: "staging/index.html"
       options:
-        livereload: true
-      compile:
-        files: 'src/**'
-        tasks: ['copy', 'coffee', 'jade', 'styl']
-          
-  grunt.loadNpmTasks 'grunt-contrib-copy'
-  grunt.loadNpmTasks 'grunt-contrib-coffee'
-  grunt.loadNpmTasks 'grunt-contrib-jade'
-  grunt.loadNpmTasks 'grunt-styl'
-  grunt.loadNpmTasks 'grunt-contrib-watch'
-  
-  grunt.registerTask 'default', ['copy', 'coffee', 'jade', 'styl']
+        root: "staging"
+        dest: "<%= project.dist %>"
+
+    # Performs rewrites based on rev and the useminPrepare configuration
+    usemin:
+      options:
+        assetsDirs: [
+          "<%= project.dist %>"
+        ]
+      html: ["<%= project.dist %>/{,*/}*.html"]
+      css: ["<%= project.dist %>/styles/{,*/}*.css"]
+
+    # The following *-min tasks produce minified files in the dist folder
+    imagemin:
+      dist:
+        files: [
+          expand: true
+          cwd: "<%= project.src %>/img"
+          src: "{,*/}*.{png,jpg,jpeg,gif}"
+          dest: "<%= project.dist %>/img"
+        ]
+
+    svgmin:
+      dist:
+        files: [
+          expand: true
+          cwd: "<%= project.src %>/img"
+          src: "{,*/}*.svg"
+          dest: "<%= project.dist %>/img"
+        ]
+
+    htmlmin:
+      dist:
+        options:
+          collapseWhitespace: true
+          collapseBooleanAttributes: true
+          removeCommentsFromCDATA: true
+          removeOptionalTags: true
+
+        files: [
+          expand: true
+          cwd: "<%= project.dist %>"
+          src: ["{,*/}*.html"]
+          dest: "<%= project.dist %>"
+        ]
+
+    # Replace Google CDN references
+    cdnify:
+      dist:
+        html: ["staging/*.html"]
+
+    # Copies remaining files to places other tasks can use
+    copy:
+      stage:
+        files: [
+          expand: true
+          cwd: '<%= project.src %>'
+          dest: 'staging'
+          src: [
+            'img/{,*/}*'
+            'styles/{,*/}*.css'
+          ]
+        ]
+
+      dist:
+        files: [
+          expand: true
+          cwd: 'staging'
+          dest: '<%= project.dist %>'
+          src: [
+            '{,*/}*.html'
+            'img/{,*/}*'
+            'scripts/{,*/}*.js'
+          ]
+        ]
+
+    # Run some tasks in parallel to speed up the build process
+    concurrent:
+      server: [
+        "coffee:dist"
+        "styl"
+        "jade"
+      ]
+      dist: [
+        "coffee"
+        "styl"
+        "jade"
+      ]
+
+  grunt.registerTask "serve", (target) ->
+    if target is "dist"
+      return grunt.task.run [
+        "build"
+        "connect:dist:keepalive"
+      ]
+
+    grunt.task.run [
+      "clean:server"
+      "concurrent:server"
+      "connect:livereload"
+      "watch"
+    ]
+
+  grunt.registerTask "build", [
+    "clean:dist"
+    "concurrent:dist"
+    "copy:stage"
+    "useminPrepare"
+    "concat"
+    "copy:dist"
+    "cssmin"
+    "filerev"
+    "usemin"
+    "htmlmin"
+  ]
+
+  grunt.registerTask "default", [
+    "build"
+  ]

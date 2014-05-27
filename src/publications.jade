@@ -1,12 +1,20 @@
 extends _layout
 block title
   +title('Publications')
-  
+
 block content
   h1 Publications
-  
-  h2 Journal Articles
+
+  h2.journals Journal Articles
   include pubs/_journals
-  
-  h2 Book Chapters
+
+  h2.books Book Chapters
   include pubs/_books
+
+block sidecontent
+  #pub-controls
+    input(type='text', name='pubfilter', id='pubfilter',
+          placeholder='Filter publications…')
+
+block scripts
+  script(src='/scripts/publications.js')

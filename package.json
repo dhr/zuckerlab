@@ -1,23 +1,33 @@
 {
   "name": "lab-website",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "devDependencies": {
-    "grunt": "~0.4.0",
-    "grunt-contrib-coffee": "~0.4.1",
-    "grunt-contrib-jade": "~0.4.0",
-    "grunt-styl": "~0.0.0",
-    "grunt-contrib-copy": "~0.4.0",
-    "grunt-contrib-watch": "~0.3.0",
-    "grunt-contrib-livereload": "~0.1.2",
-    "styl": "0.0.1",
-    "rework": "~0.14.0"
-  },
-  "dependencies": {
-    "zappajs": "~0.4.15",
-    "nib": "~0.9.1"
+    "grunt-contrib-copy": "^0.5.0",
+    "grunt-concurrent": "^0.5.0",
+    "grunt-contrib-concat": "^0.4.0",
+    "time-grunt": "^0.3.1",
+    "grunt-contrib-clean": "^0.5.0",
+    "grunt-contrib-coffee": "^0.10.1",
+    "grunt-newer": "^0.7.0",
+    "grunt-styl": "^0.3.2",
+    "grunt-contrib-jade": "^0.11.0",
+    "load-grunt-tasks": "^0.4.0",
+    "grunt": "^0.4.5",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-contrib-connect": "^0.7.1",
+    "grunt-contrib-uglify": "^0.4.0",
+    "grunt-contrib-cssmin": "^0.9.0",
+    "grunt-usemin": "yeoman/grunt-usemin",
+    "grunt-svgmin": "^0.4.0",
+    "grunt-contrib-htmlmin": "^0.3.0",
+    "grunt-contrib-imagemin": "^0.7.0",
+    "grunt-google-cdn": "^0.4.0",
+    "rework-vars": "^3.0.0",
+    "rework-calc": "^0.2.2",
+    "grunt-filerev": "^0.2.1",
+    "grunt-rev": "^0.1.0"
   },
   "engines": {
-    "node": "~0.8.16",
-    "npm": "~1.1.65"
+    "node": ">=0.8.0"
   }
 }

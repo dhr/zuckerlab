@@ -1,13 +1,16 @@
 extends _layout
 block title
   +title('Research')
-  
+
 block content
   h1 Research
   p Computational vision is at the heart of biomedicine and robotics, but is still quite primitive when compared with our own visual sense. We effortlessly demonstrate enormous flexibility and generality, which hides its staggering complexity: Nearly half of the primate brain processes visual information. Our group is attempting to put the requirements of vision systems together with insights from neurophysiology and the rigor of mathematics to develop an abstract theory of computational vision.  Based on differential geometry, it leads to methods of curve detection and shading and texture analysis.
 
   #project-thumbnails
-    each project in [['color_denoising', 'Color Denoising'], ['color_shading', 'Color/Shading Interaction'], ['edge_line', 'Edge/Line Detection'], ['neuroscience', 'Computational Neuroscience'], ['psychophysics', 'Psychophysics'], ['shading_occlusion', 'Shading-Based Occlusion Analysis'], ['texture_flows', 'Texture Flows'], ['shock_graphs', 'Shock Graphs & Shape Matching'], ['stereo', 'Stereo']]
-      a.project-link(href = '/projects/' + project[0] + '.html',
-        style = 'background-image: url(/img/projects/' + project[0] + '.gif)')
-        .description #{project[1]}
+    each val, key in projects
+      a.project-link(href = '/projects/' + key + '.html',
+        style = 'background-image: url(/img/projects/' + key + '.gif)')
+        .description #{val}
+
+block scripts
+  script(src='/scripts/index.js')
