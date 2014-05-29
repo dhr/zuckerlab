@@ -25,7 +25,8 @@
     "rework-vars": "^3.0.0",
     "rework-calc": "^0.2.2",
     "grunt-filerev": "^0.2.1",
-    "grunt-rev": "^0.1.0"
+    "grunt-rev": "^0.1.0",
+    "grunt-shell": "^0.7.0"
   },
   "engines": {
     "node": ">=0.8.0"

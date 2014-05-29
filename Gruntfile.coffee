@@ -42,10 +42,9 @@ module.exports = (grunt) ->
     connect:
       options:
         port: 9000
-
+        livereload: 35729
         # Change this to '0.0.0.0' to access the server from outside.
         hostname: "0.0.0.0"
-        livereload: 35729
 
       livereload:
         options:
@@ -57,6 +56,8 @@ module.exports = (grunt) ->
 
       dist:
         options:
+          open: true
+          livereload: false
           base: "<%= project.dist %>"
 
     # Empties folders to start fresh
@@ -72,6 +73,17 @@ module.exports = (grunt) ->
         ]
 
       server: "staging"
+
+    shell:
+      makepubs:
+        options:
+          execOptions:
+            cwd: '<%= project.src %>/pubs'
+
+        command: [
+          './bib2jade.py journals.bib > _journals.jade'
+          './bib2jade.py books.bib > _books.jade'
+        ].join('&&')
 
     # Compiles .coffee files
     coffee:
@@ -205,8 +217,8 @@ module.exports = (grunt) ->
           cwd: '<%= project.src %>'
           dest: 'staging'
           src: [
-            'img/{,*/}*'
             'styles/{,*/}*.css'
+            'scripts/{,*/}*.js'
           ]
         ]
 
@@ -217,7 +229,6 @@ module.exports = (grunt) ->
           dest: '<%= project.dist %>'
           src: [
             '{,*/}*.html'
-            'img/{,*/}*'
             'scripts/{,*/}*.js'
           ]
         ]
@@ -238,7 +249,6 @@ module.exports = (grunt) ->
   grunt.registerTask "serve", (target) ->
     if target is "dist"
       return grunt.task.run [
-        "build"
         "connect:dist:keepalive"
       ]
 
@@ -251,11 +261,13 @@ module.exports = (grunt) ->
 
   grunt.registerTask "build", [
     "clean:dist"
+    "shell:makepubs"
     "concurrent:dist"
     "copy:stage"
     "useminPrepare"
     "concat"
     "copy:dist"
+    "imagemin"
     "cssmin"
     "filerev"
     "usemin"

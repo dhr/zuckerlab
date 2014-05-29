@@ -19,7 +19,7 @@ body
   font-family: 'Rosario'
   font-size: var(--body-font-size)
   background-color: #fbfbfb
-  background-image: linear-gradient(top, white, rgba(255, 255, 255, 0) 30px)
+  background-image: linear-gradient(top, white, rgba(#fff, 0) 30px)
   background-repeat: no-repeat
 
   h1, h2
@@ -168,6 +168,20 @@ nav
 
     &:hover
       text-decoration: underline
+
+    &.control
+      border: solid 1px #a00
+      border-radius: 3px
+      padding: 1px 3px 0px 3px
+      margin: calc((var(--rhythm2) - 16px)/2) 6px 0px 6px
+      font-size: 12px
+      line-height: 16px
+      text-align: center
+
+    &.control:hover
+      text-decoration: none
+      background-color: #fcc
+      cursor: pointer
 
   #steve
     width: 250px
@@ -344,45 +358,107 @@ nav
     &:not(:first-child)
       margin-top: var(--rhythm)
 
-  .author
-    &:not(:first-child)::before
-      content: ', '
-    &:last-child::before
-      content: ', and '
-    &:first-child:last-child::before
-      content: ''
+    .reference
+      .author
+        &:not(:first-child)::before
+          content: ', '
+        &:last-child::before
+          content: ', and '
+        &:first-child:last-child::before
+          content: ''
 
-  .title
-    &::before
-      content: ', '
+      .title
+        &::before
+          content: ', '
 
-  .journal, .booktitle
-    font-style: italic
-    &::before
-      font-style: normal
-      content: ', '
+      .journal, .booktitle
+        font-style: italic
+        &::before
+          font-style: normal
+          content: ', '
 
-  .volume
-    font-weight: bold
-    &::before
-      font-weight: normal
-      content: ', '
+      .volume
+        font-weight: bold
+        &::before
+          font-weight: normal
+          content: ', '
 
-  .issue
-    &::before
-      content: '('
-    &::after
-      content: ')'
+      .issue
+        &::before
+          content: '('
+        &::after
+          content: ')'
 
-  :not(.issue) + .pages
-    display: none
+      :not(.issue) + .pages
+        display: none
 
-  .pages
-    &::before
-      content: ': '
+      .pages
+        &::before
+          content: ': '
 
-  .year
-    &::before
-      content: ', '
-    &::after
-      content: '.'
+      .year
+        &::before
+          content: ', '
+        &::after
+          content: '.'
+
+    .bibtex
+      position: relative
+      display: inline-block
+
+      .control
+        display: inline-block
+
+      .bibtex-content
+        position: absolute
+        left: 50%
+        margin-left: -200px
+        width: 400px
+        top: calc(var(--rhythm2) + 10px)
+        display: none
+        background-color: #fff
+        border: solid 1px #ccc
+        border-radius: 3px
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3)
+
+        &::before, &::after
+          content: ""
+          position: absolute
+          top: -8px
+          left: calc(50% - 8px)
+          border-style: solid
+          border-width: 0px 8px 8px 8px
+          border-color: transparent
+          border-bottom-color: rgba(#fff, 0.96)
+          display: block
+          z-index: 1
+
+        &::after
+          top: -9px
+          left: calc(50% - 9px)
+          border-width: 0px 9px 9px 9px
+          border-bottom-color: #ccc
+          z-index: 0
+
+        & pre
+          box-sizing: border-box
+          width: 100%
+          font-size: 14px
+          line-height: 14px
+          padding: calc(var(--rhythm)/2)
+          font-family: 'Courier New', monospace
+          white-space: pre-wrap
+          overflow-x: scroll
+
+          &::before
+            position: absolute
+            content: ""
+            width: 100%
+            left: 0px
+            top: -12px
+            height: 12px
+            background-color: transparent
+
+      &:hover .bibtex-content
+        display: block
+        z-index: 10
